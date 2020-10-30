@@ -34,11 +34,12 @@ const useStyles = makeStyles((theme) => ({
 export default function Products() {
   const classes = useStyles();
   const [products, setProducts] = useState<Product[]>([]);
+  const urlImage = "https://source.unsplash.com/random/1600x900/?phone?"
 
   useEffect(() => {
-    // axios.get(`${API_PATHS.bff}/product/available/`)
-    //   .then(res => setProducts(res.data));
-    setProducts(productList);
+     axios.get(`${API_PATHS.bff}/products`)
+       .then(res => setProducts(res.data));
+    // setProducts(productList);
   }, [])
 
   return (
@@ -48,7 +49,7 @@ export default function Products() {
           <Card className={classes.card}>
             <CardMedia
               className={classes.cardMedia}
-              image="https://source.unsplash.com/random/1600x900/?telephones"
+              image={urlImage + product.title}
               title="Image title"
             />
             <CardContent className={classes.cardContent}>
